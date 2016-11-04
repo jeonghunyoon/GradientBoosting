@@ -5,6 +5,7 @@
 Gradient Boosting vs Bagging(Bootstrap Aggregation) vs Random Forest를 비교해보자.
 여기서는 synthetic data를 사용하여, GB를 먼저 공부해 볼 것이다.
 이 코드는 학습을 위한 것이다.
+우선 이코드는 eps = 0.3으로 depth는 5로, ensemble은 30개로 했다.
 '''
 
 __author__ = 'Jeonghun Yoon'
@@ -87,6 +88,7 @@ for iModel in range(len(modelList)):
 
 nModels = [i+1 for i in range(len(modelList))]
 
+# mse의 plot을 찍어본다.
 plot.plot(nModels, mse)
 plot.axis('tight')
 plot.xlabel('Number of Models in Ensemble')
@@ -94,6 +96,7 @@ plot.ylabel('Mean Squared Error')
 plot.ylim((0.0, max(mse)))
 plot.show()
 
+# ensemble이 30개인 경우 plot을 찍어본다.
 plotList = [0, 14, 29]
 lineType = [':', '-.', '--']
 plot.figure()
