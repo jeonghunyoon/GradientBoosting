@@ -110,4 +110,3 @@ plot.axis('tight')
 plot.xlabel('x value')
 plot.ylabel('Prediction')
 plot.show()
-
