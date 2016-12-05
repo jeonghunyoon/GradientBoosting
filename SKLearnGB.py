@@ -7,6 +7,7 @@ from sklearn.cross_validation import train_test_split
 from sklearn import ensemble
 from sklearn.metrics import mean_squared_error
 import pylab as plot
+import numpy as np
 
 # SKLearn library 를 사용하여, Gradient boosting 을 구현하여 보자.
 # 먼저 uci archieve 에서 wine 데이터를 가지고 올 것이다.
@@ -18,6 +19,7 @@ yData = []
 f = urllib.urlopen("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv")
 
 # skip the title (index 1 부터)
+# title = f.readlines()[:1]
 lines = f.readlines()[1:]
 
 # If we need title then use this.
@@ -67,4 +69,16 @@ plot.plot(range(1, nTree + 1), mseList, label = 'Test Set MSE')
 plot.legend(loc='upper right')
 plot.xlabel('Number of Trees in Ensemble')
 plot.ylabel('Mean Squared Error')
+plot.show()
+
+# 중요한 feature 골라내기
+plot.figure()
+featureImportance = GBModel.feature_importances_
+
+featureImportance = featureImportance / max(featureImportance)
+idxSorted = np.argsort(featureImportance)
+barPos = np.arange(idxSorted.shape[0]) + .5
+plot.barh(barPos, featureImportance[idxSorted], align='center')
+plot.xlabel('Variable Importance')
+plot.subplots_adjust(left=0.2, right=0.9, top=0.9, bottom=0.1)
 plot.show()
