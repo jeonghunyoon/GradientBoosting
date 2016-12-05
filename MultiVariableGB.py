@@ -74,6 +74,7 @@ for iModel in range(maxTree):
     # xTrain의 predict 값을 구한다.
     predTrain = [model.predict(np.array(xTrain[i]).reshape(1, -1)) for i in range(nTrain)]
     # residuals를 업데이트 하기 위하여 xTrain의 predict 값을 구하고, eps의 비율만큼을 현재 residual에서 줄인다.
+    # eps 는 gradient 의 learning rate 이다.
     residuals = [residuals[i] - eps * predTrain[i] for i in range(nTrain)]
 
     # xTest의 predict 값을 구한다. 이것은 나중에 test set의 target values와의 mse를 구하기 위해서이다.
